@@ -5,11 +5,11 @@
 #define PLUGIN_VERSION "1.0"
 
 public Plugin:myinfo = {
-  "name": "TFTrue Whitelist Setter",
-  "author": "Luop90",
-  "description": "Based on player count (or command), sets the TFTrue whitelist ID to the correct whitelist",
-  "version": PLUGIN_VERSION,
-  "url": "https://github.com/luop90"
+  name = "TFTrue Whitelist Setter",
+  author = "Luop90",
+  description = "Based on player count (or command), sets the TFTrue whitelist ID to the correct whitelist",
+  version = PLUGIN_VERSION,
+  url = "https://github.com/luop90"
 };
 
 new Handle: cvarVersion;
@@ -35,23 +35,23 @@ public Action:ManuallySetWhitelist(client, args) {
   }
 
   // God I wish SourcePawn had switch statements...
-  if (StrEquals(name, "4s", false)) {
+  if (StrEqual(name, "4s", false)) {
     ChangeWhitelistId(WHITELISTID_4S);
-  } else if (StrEquals(name, "6s", false)) {
+  } else if (StrEqual(name, "6s", false)) {
     ChangeWhitelistId(WHITELISTID_6S);
-  } else if (StrEquals(name, "HL", false)) {
+  } else if (StrEqual(name, "HL", false)) {
     ChangeWhitelistId(WHITELISTID_HL);
-  } else if (StrEquals(name, "Ultiuo", false)) {
-    ChangeWhitelistId(WHITELISTID_ULTIDUO)
+  } else if (StrEqual(name, "Ultiuo", false)) {
+    ChangeWhitelistId(WHITELISTID_ULTIDUO);
   } else {
-    PrintToChat(client, "\x05[TFTrue]\x01 Unknown whitelist type " + name);
+    PrintToChat(client, "\x05[TFTrue]\x01 Unknown whitelist type %s", name);
   }
 
   return Plugin_Handled;
 }
 
 stock ChangeWhitelistId(id) {
-  ServerExecute("tftrue_whitelist_id " + id);
+  ServerCommand("tftrue_whitelist_id %i", id);
 
-  PrintToChatAll('\x05[TFTrue]\x01 Set whitelist id to ' + id);
+  PrintToChatAll("\x05[TFTrue]\x01 Set whitelist id to %i", id);
 }
