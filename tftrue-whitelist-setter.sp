@@ -41,7 +41,7 @@ public Action:ManuallySetWhitelist(client, args) {
     ChangeWhitelistId(WHITELISTID_6S);
   } else if (StrEqual(name, "HL", false)) {
     ChangeWhitelistId(WHITELISTID_HL);
-  } else if (StrEqual(name, "Ultiuo", false)) {
+  } else if (StrEqual(name, "Ultiduo", false)) {
     ChangeWhitelistId(WHITELISTID_ULTIDUO);
   } else {
     PrintToChat(client, "\x05[TFTrue]\x01 Unknown whitelist type %s", name);
