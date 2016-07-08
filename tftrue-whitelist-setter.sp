@@ -38,11 +38,16 @@ public Action:ManuallySetWhitelist(client, args) {
   GetCmdArgString(name, sizeof(name));
 
   if (!CheckCommandAccess(client, "admin", ADMFLAG_GENERIC, false)) {
-    PrintToChat(client, "\x05[TFTrue]\x01 You do not have permission to use this command.");
+    PrintToChat(client, "\x05[TFTrue]\x01 You do not have permission to use this command");
     return Plugin_Handled;
   }
 
-  // God I wish SourcePawn had switch statements...
+  if (strlen(name) < 1) {
+    PrintToChat(client, "\x05[TFTrue]\x01 Usage: sm_setwhitelist [UltiDuo|4s|6s|HL]");
+    return Plugin_Handled;
+  }
+
+  // I wish SourcePawn had switch statements...
   if (StrEqual(name, "4s", false)) {
     ChangeWhitelistId(WHITELISTID_4S);
   } else if (StrEqual(name, "6s", false)) {
